@@ -1,0 +1,19 @@
+2.	Write a query to create route_details table using suitable data types for the fields, such as route_id, flight_num, origin_airport, destination_airport, aircraft_id, and distance_miles. Implement the check constraint for the flight number and unique constraint for the route_id fields. Also, make sure that the distance miles field is greater than 0.
+
+ANS: In this case I have made route_id the primary key so the field is Unique and cannot contain Nulls. 
+Then I altered the table to add a check constraint for the flight_num > 1 and NOT NULL and distance_miles > 0.
+I then did a check on the distance_miles field to find if there were any returns for < 0 of which there were none. 
+CODE: 
+DESCRIBE routes;
+
+ALTER TABLE routes
+MODIFY flight_num int NOT NULL;
+
+ALTER TABLE routes
+ADD CHECK (flight_num > 1),
+ADD CHECK (distance_miles > 0);
+
+-- Check for any errors.
+SELECT *
+FROM routes
+WHERE distance_miles <0;
