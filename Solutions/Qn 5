@@ -1,0 +1,8 @@
+5.	Write a query to display the full name of the customer by extracting the first name and last name from the customer table.
+
+ANS: Used CONCATWS function to extract this information from the customers table
+CODE : 
+
+SELECT customer_id,
+CONCAT_WS(' ', first_name, last_name) AS customer_full_name
+FROM customer;
