@@ -1,0 +1,62 @@
+11.	Write a query to create a stored procedure to get the details of all passengers flying between a range of routes defined in run time. Also, return an error message if the table doesn't exist. 
+
+This was the hardest question in the data set as it called for creating procedures and creating error codes when out puts did not exist.
+
+ANSWER 1 – Multiple checks on table existing and to return error if no output exists for the routes called. I did two checks 1 for when there were no passaengers in route
+
+CODE :
+DELIMITER $$
+
+CREATE PROCEDURE Flight_route_range3 (IN flight_route_id1 INT, IN flight_route_id2 INT)
+BEGIN
+    -- Check if passengers_on_flights and customer tables exist
+    DECLARE passengers_table_exists INT;
+    DECLARE customer_table_exists INT;
+    
+    SELECT COUNT(*) INTO passengers_table_exists
+    FROM information_schema.tables
+    WHERE table_schema = DATABASE() AND table_name = 'passengers_on_flights';
+
+    SELECT COUNT(*) INTO customer_table_exists
+    FROM information_schema.tables
+    WHERE table_schema = DATABASE() AND table_name = 'customer';
+
+    -- If either of the tables does not exist, return an error message
+    IF passengers_table_exists = 0 OR customer_table_exists = 0  THEN
+        SELECT 'Error: One or more required tables do not exist. ' AS Message;
+    ELSE
+        -- Check the number of rows that would be returned by the query
+        SET @num_rows = (
+            SELECT COUNT(*)
+            FROM passengers_on_flights AS p
+            WHERE p.route_id BETWEEN flight_route_id1 AND flight_route_id2
+        );
+
+        -- If no rows are returned, raise an error message
+        IF @num_rows = 0 THEN
+            SELECT 'Error: No data found for the specified flight route range. Table Doesnt Exist' AS Message;
+        ELSE
+            -- Fetch the passenger and customer details between the specified routes
+            SELECT  p.route_id,
+                   p.depart,
+                   p.arrival,
+                   p.seat_num,
+                   c.*
+            FROM passengers_on_flights AS p
+            INNER JOIN customer AS c ON p.customer_id = c.customer_id
+            WHERE p.route_id BETWEEN flight_route_id1 AND flight_route_id2
+            ORDER BY p.route_id;
+        END IF;
+    END IF;
+END $$
+
+DELIMITER ;
+
+CALL Flight_route_range3('1','50');
+
+I did two checks 1 for when there were no passaengers in route
+
+1. CALL Flight_route_range3('2','3'); which returned the Error Message No data found for the specified flight route range. Table Doesnt Exist
+
+2. When I dropped the customer table from the dataset and ran the call.
+Error Message Error: One or more required tables do not exist
