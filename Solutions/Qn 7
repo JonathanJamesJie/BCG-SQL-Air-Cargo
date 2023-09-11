@@ -1,5 +1,8 @@
 7.	Write a query to identify the customer’s first name and last name based on their customer ID and brand (Emirates) from the ticket_details table.
-ANS: Selected relevant customer info from customer and ticket_details table using a left join to combine the tables and using WHERE statement to limit returns only to “Emirates’. Used distinct here as list of customers was asked for and avoid duplicates.
+
+ANS: Selected relevant customer info from customer and ticket_details table using a left join to combine the tables and using WHERE statement to limit returns only to “Emirates’. 
+Used distinct here as list of customers was asked for and avoid duplicates.
+
 CODE :
 
 SELECT DISTINCT t.customer_id,
