@@ -1,7 +1,10 @@
 6.	Write a query to extract the customers who have registered and booked a ticket. Use data from the customer and ticket_details tables.
-ANS: Selected relevant customer info from customer and ticket_details and ensure that p.date is not null so that we can verify there is a booking. Used DISTINCT here as the question asks for customers not all purchases 
+
+ANS: Selected relevant customer info from customer and ticket_details and ensure that p.date is not null so that we can verify there is a booking. 
+Used DISTINCT here as the question asks for customers not all purchases 
 
 CODE: 
+
 SELECT DISTINCT t.customer_id, 
 c.first_name, 
 c.last_name,
