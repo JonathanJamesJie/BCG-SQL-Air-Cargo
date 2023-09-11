@@ -1,0 +1,10 @@
+9.	Write a query to identify whether the revenue has crossed 10000 using the IF clause on the ticket_details table.
+
+ANS: By using the Sum function on (price per ticket * no of tickets) we can get the total revenue value and by using an IF statement we can return the appropriate message by checking that the condition of revenue > $10,000 has been met. 
+I have also included the actual total revenue to check that it has indeed crossed $10,000. 
+
+CODE:
+
+SELECT SUM(price_per_ticket * no_of_tickets) AS total_revenue,
+IF(SUM(price_per_ticket * no_of_tickets) > 10000, 'Crossed', 'Not Crossed') Revenue_Crossed_10000
+FROM ticket_details;
