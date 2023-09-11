@@ -1,0 +1,18 @@
+12.	Write a query to create a stored procedure that extracts all the details from the routes table where the traveled distance is more than 2000 miles.
+
+ANS: Wrote procedure to select all information from route table using WHERE distance_miles > 2000 to filter out according to the question.
+
+CODE :
+DELIMITER $$
+
+CREATE PROCEDURE route_greater()
+
+BEGIN
+SELECT *
+FROM routes
+WHERE distance_miles > 2000;
+END $$;
+
+DELIMITER ;
+
+CALL route_greater();
