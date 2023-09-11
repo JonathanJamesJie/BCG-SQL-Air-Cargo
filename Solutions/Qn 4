@@ -1,0 +1,11 @@
+4.	Write a query to identify the number of passengers and total revenue in business class from the ticket_details table.
+
+ANS: Ran a sum of no of tickets for the number of passengers and a SUM function on (Price_per_ticket * No_of_tickets) for total revenue.
+WHERE clause on class_id to restrict to only business class
+
+CODE :
+
+SELECT SUM(no_of_tickets) AS number_passenger_business,
+SUM(Price_per_ticket * no_of_tickets) AS total_revenue_business
+FROM ticket_details
+WHERE class_id = 'Business';
