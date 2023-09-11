@@ -1,0 +1,20 @@
+10.	Write a query to create a view with only business class customers along with the brand of airlines.
+
+A view is a virtual table based on the result-set of an SQL statement. You would then need to call information from the view to see the data.
+
+ANS: Created view with relevant details including brand of airline using WHERE to restrict class to business class only. Results of the view shown on second screenshot
+
+CODE:
+CREATE VIEW businessclass_brand
+AS
+SELECT t.customer_id,
+t.class_id,
+t.brand,
+c.first_name,
+c.last_name
+FROM ticket_details AS T
+LEFT JOIN customer AS c
+ON t.customer_id = c.customer_id
+WHERE t.class_id = 'Business' ;
+
+SELECT * FROM project.businessclass_brand;
