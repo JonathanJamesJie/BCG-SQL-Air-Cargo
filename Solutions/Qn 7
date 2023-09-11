@@ -1,0 +1,13 @@
+7.	Write a query to identify the customer’s first name and last name based on their customer ID and brand (Emirates) from the ticket_details table.
+ANS: Selected relevant customer info from customer and ticket_details table using a left join to combine the tables and using WHERE statement to limit returns only to “Emirates’. Used distinct here as list of customers was asked for and avoid duplicates.
+CODE :
+
+SELECT DISTINCT t.customer_id,
+t.brand,
+c.first_name,
+c.last_name
+FROM ticket_details AS t
+LEFT JOIN customer AS c
+on t.customer_id = c.customer_id
+WHERE t.brand = 'Emirates'
+ORDER BY t.customer_id ASC;
