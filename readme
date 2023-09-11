@@ -63,3 +63,14 @@ Questions to answer.
 11.	Write a query to create a stored procedure to get the details of all passengers flying between a range of routes defined in run time. Also, return an error message if the table doesn't exist. 
 12.	Write a query to create a stored procedure that extracts all the details from the routes table where the traveled distance is more than 2000 miles.
 13.	Write a query to create a stored procedure that groups the distance traveled by each flight into three categories. The categories are, short distance travel (SDT) for >=0 AND <= 2000 miles, intermediate distance travel (IDT) for >2000 AND <=6500, and long-distance travel (LDT) for >6500.
+
+As the dataset was relatively small, I did checks in excel instead of SQL. I checked for the following.
+
+1. Duplicate data
+2. Missing data
+3. Errors in data
+
+While there was no 1. and 2. There were mulitple errors I cleaned for 3.
+
+1. Incorrect spellings 1 Count of British Airways and 9 counts of Bristish Airways. Amended to all be British. Brand field in ticket_details
+2. Business spelled as Bussiness in Class_id field in ticket_details. Amended spelling to business
