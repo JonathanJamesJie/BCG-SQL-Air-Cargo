@@ -1,0 +1,15 @@
+8.	Write a query to identify the customers who have traveled by Economy Plus class using Group By and Having clause on the passengers_on_flights table.
+
+ANS: Selected relevant customer info from customer and passenger_on_flights table using a left join to combine the tables and using GROUP BY on all the fields in the SELECT statement. 
+I then used a HAVING clause to limit to those only traveling Economy Plus, we cannot use a WHERE clause here since the fields have already been grouped. 
+
+CODE: 
+SELECT p.customer_id,
+p.class_id,
+c.first_name,
+c.last_name
+FROM passengers_on_flights AS p
+LEFT JOIN customer AS c
+ON p.customer_id = c.customer_id
+GROUP BY p.customer_id, p.class_id, c.first_name, c.last_name
+HAVING p.class_id = 'Economy Plus';
