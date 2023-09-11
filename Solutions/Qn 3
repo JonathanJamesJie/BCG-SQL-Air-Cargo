@@ -1,0 +1,15 @@
+3.	Write a query to display all the passengers (customers) who have traveled in routes 01 to 25. Take data from the passengers_on_flights table.
+
+ANS: I am using more identifying fields from the customers table. The where clause should exclude customers who are NOT traveling in routes 01 to 25. 
+An inner join is used instead of LEFT join to only include customers appearing on both customer and ticket_details tables who meet the criteria of traveling in routes 01 to 25.
+CODE : 
+
+SELECT c.customer_id,
+c.first_name,
+c.last_name,
+p.route_id,
+p.travel_date
+FROM customer AS c
+INNER JOIN passengers_on_flights AS p
+ON c.customer_id = p.customer_id
+WHERE p.route_id BETWEEN 01 AND 25;
